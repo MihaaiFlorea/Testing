@@ -10,12 +10,12 @@ class RadioCheckButtons():
         self.driver.get(self.url)
 
     def modalitate_plata(self, obtiune_plata = 'cash'):
-        if obtiune_plata in ['cash', 'online', 'transfer']:
-            obtiune_plata = self.driver.find_element(By.XPATH, f"//input[@value = '{obtiune_plata}']")
+        if optiune_plata in ['cash', 'online', 'transfer']:
+            optiune_plata = self.driver.find_element(By.XPATH, f"//input[@value = '{obtiune_plata}']")
             try:
-                obtiune_plata.click()
+                optiune_plata.click()
             except:
-                obtiune_plata.click()
+                optiune_plata.click()
         else:
             print('Modalitate de plata invalida')
 
