@@ -11,7 +11,7 @@ class RadioCheckButtons():
 
     def modalitate_plata(self, obtiune_plata = 'cash'):
         if optiune_plata in ['cash', 'online', 'transfer']:
-            optiune_plata = self.driver.find_element(By.XPATH, f"//input[@value = '{obtiune_plata}']")
+            optiune_plata = self.driver.find_element(By.XPATH, f"//input[@value = '{optiune_plata}']")
             try:
                 optiune_plata.click()
             except:
