@@ -9,7 +9,7 @@ class RadioCheckButtons():
         self.driver.maximize_window()
         self.driver.get(self.url)
 
-    def modalitate_plata(self, obtiune_plata = 'cash'):
+    def modalitate_plata(self, optiune_plata = 'cash'):
         if optiune_plata in ['cash', 'online', 'transfer']:
             optiune_plata = self.driver.find_element(By.XPATH, f"//input[@value = '{optiune_plata}']")
             try:
