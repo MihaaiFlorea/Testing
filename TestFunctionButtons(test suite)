@@ -6,7 +6,8 @@ import time
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s <%(levelname)s> - %(funcName)s : %(message)s',
-                    datefmt='%H %M')
+                    datefmt='%H %M',
+                    filename='testing.log')
 
 
 class TestFunctionButtons(unittest.TestCase):
