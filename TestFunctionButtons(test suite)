@@ -1,0 +1,39 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import unittest
+import logging
+import time
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s <%(levelname)s> - %(funcName)s : %(message)s',
+                    datefmt='%H %M')
+
+
+class TestFunctionButtons(unittest.TestCase):
+    def setUp(self):
+        self.URL = 'https://www.telacad.ro/'
+        logging.info(f'Start sessions with: {self.URL}')
+        self.driver = webdriver.Chrome('E:\\Program Files\\chromedriver.exe')
+        self.driver.maximize_window()
+        self.driver.get(self.URL)
+        time.sleep(2)
+
+    def test_button_toate_cursurile(self):
+        self.button_exploreaza = self.driver.find_element(By.XPATH, "//a[@class = 'btn btn-lg btn-primary btn-gradient home-cta-btn']")
+        self.button_exploreaza.click()
+        time.sleep(2)
+        title_page = self.driver.find_element(By.XPATH, "//h2[@class = 'title']").get_attribute('innerText')
+        self.assertIn('Toate cursurile', title_page, 'Erroare button \'toate cursurile\'')
+        logging.info("Successful button 'Toate cursurile'")
+
+    def test_button_search(self):
+        self.button_search = self.driver.find_element(By.XPATH, "//button[@class = 'btn btn-primary']")
+        self.button_search.click()
+        time.sleep(2)
+        title_page = self.driver.find_element(By.XPATH, "//h2[@class = 'generic']").get_attribute('innerText')
+        self.assertIn('Rezultatele căutării pentru: Caută curs...', title_page, 'Reeor button \'Serach\'')
+        logging.info("Successful button 'Search'")
+
+    def tearDown(self):
+        logging.info(f'Stop session with {self.driver.current_url}')
+        self.driver.quit()
