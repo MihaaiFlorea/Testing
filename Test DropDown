@@ -1,0 +1,31 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+import time
+
+
+class DropDown():
+    def __init__(self,url):
+        self.url = url
+        self.driver = webdriver.Chrome('E:\\Program Files\\chromedriver.exe')
+        self.driver.maximize_window()
+        self.driver.get(self.url)
+        time.sleep(5)
+
+    def selecteaza_curs(self, optiune, tip_obtiune = "index"):
+        cursuri = self.driver.find_element(By.ID, "inscrieri_curs")
+        optiuni = Select(cursuri)
+        if tip_obtiune == 'value':
+            optiuni.select_by_value(optiune)
+        elif tip_obtiune == 'index':
+            optiuni.select_by_index(optiune)
+        elif tip_obtiune == 'text':
+            optiuni.select_by_visible_text(optiune)
+        time.sleep(5)
+
+    def close(self):
+        self.driver.close()
+
+DropDown('https://www.telacad.ro/modalitati-de-plata/').selecteaza_curs('3')
+DropDown('https://www.telacad.ro/modalitati-de-plata/').selecteaza_curs('22486','value')
+DropDown('https://www.telacad.ro/modalitati-de-plata/').selecteaza_curs('AWS Fundamentals – ONLINE','text')
